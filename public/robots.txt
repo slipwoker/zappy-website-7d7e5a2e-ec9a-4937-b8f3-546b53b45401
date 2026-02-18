@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://midan-shvartsman.zappy5.app/sitemap.xml
+Sitemap: https://midan-schwartzman.zappy5.app/sitemap.xml

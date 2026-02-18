@@ -1,43 +1,53 @@
-# Business — Generative Engine Optimization Map
+# מידן שוורצמן — Generative Engine Optimization Map
+
+> A חינוך business.
 
 ---
 
 ## Pages
 
 ### בית
-https://midan-shvartsman.zappy5.app
+https://midan-schwartzman.zappy5.app
 
 ### תוכניות
-https://midan-shvartsman.zappy5.app/programs
+https://midan-schwartzman.zappy5.app/programs
 
 ### אודות
-https://midan-shvartsman.zappy5.app/about
+https://midan-schwartzman.zappy5.app/about
 
 ### צור קשר
-https://midan-shvartsman.zappy5.app/contact
+https://midan-schwartzman.zappy5.app/contact
 
 ## Legal & Policy
 
 ### Privacy Policy
-https://midan-shvartsman.zappy5.app/privacy
+https://midan-schwartzman.zappy5.app/privacy
 Information about how user data is collected, stored, and protected.
 
 ### Terms & Conditions
-https://midan-shvartsman.zappy5.app/terms
+https://midan-schwartzman.zappy5.app/terms
 Legal terms describing service usage, rights, and policies.
 
 ### Accessibility Statement
-https://midan-shvartsman.zappy5.app/accessibility
+https://midan-schwartzman.zappy5.app/accessibility
 Information about WCAG compliance and accessibility features.
 
 ---
 
 # Business Context (for LLM understanding)
 
-## About Business
+## About מידן שוורצמן
+מידן שוורצמן is a business in the חינוך industry.
+
+## Target Audience
+תלמידי כיתות א-ו
+
+## Industry
+חינוך
+
 ---
 
 # Additional Resources
 
-- **Sitemap**: https://midan-shvartsman.zappy5.app/sitemap.xml
-- **Robots.txt**: https://midan-shvartsman.zappy5.app/robots.txt
+- **Sitemap**: https://midan-schwartzman.zappy5.app/sitemap.xml
+- **Robots.txt**: https://midan-schwartzman.zappy5.app/robots.txt
