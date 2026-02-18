@@ -1,43 +1,53 @@
-# Business — Generative Engine Optimization Map
+# מידן שוורצמן — Generative Engine Optimization Map
+
+> A חינוך business.
 
 ---
 
 ## Pages
 
 ### בית
-https://example.com
+https://midan-shvartsman.zappy5.app
 
 ### תוכניות
-https://example.com/programs
+https://midan-shvartsman.zappy5.app/programs
 
 ### אודות
-https://example.com/about
+https://midan-shvartsman.zappy5.app/about
 
 ### צור קשר
-https://example.com/contact
+https://midan-shvartsman.zappy5.app/contact
 
 ## Legal & Policy
 
 ### Privacy Policy
-https://example.com/privacy
+https://midan-shvartsman.zappy5.app/privacy
 Information about how user data is collected, stored, and protected.
 
 ### Terms & Conditions
-https://example.com/terms
+https://midan-shvartsman.zappy5.app/terms
 Legal terms describing service usage, rights, and policies.
 
 ### Accessibility Statement
-https://example.com/accessibility
+https://midan-shvartsman.zappy5.app/accessibility
 Information about WCAG compliance and accessibility features.
 
 ---
 
 # Business Context (for LLM understanding)
 
-## About Business
+## About מידן שוורצמן
+מידן שוורצמן is a business in the חינוך industry.
+
+## Target Audience
+תלמידי כיתות א-ו
+
+## Industry
+חינוך
+
 ---
 
 # Additional Resources
 
-- **Sitemap**: https://example.com/sitemap.xml
-- **Robots.txt**: https://example.com/robots.txt
+- **Sitemap**: https://midan-shvartsman.zappy5.app/sitemap.xml
+- **Robots.txt**: https://midan-shvartsman.zappy5.app/robots.txt
