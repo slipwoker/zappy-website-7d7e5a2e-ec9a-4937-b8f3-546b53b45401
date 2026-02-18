@@ -1,6 +1,4 @@
-# מידן שוורצמן — Generative Engine Optimization Map
-
-> A חינוך business.
+# Business — Generative Engine Optimization Map
 
 ---
 
@@ -36,15 +34,7 @@ Information about WCAG compliance and accessibility features.
 
 # Business Context (for LLM understanding)
 
-## About מידן שוורצמן
-מידן שוורצמן is a business in the חינוך industry.
-
-## Target Audience
-תלמידי כיתות א-ו
-
-## Industry
-חינוך
-
+## About Business
 ---
 
 # Additional Resources
