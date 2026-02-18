@@ -1,0 +1,630 @@
+<!DOCTYPE html><html lang="he" dir="rtl"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>צור קשר - מידן שוורצמן</title>
+  <meta name="description" content="צור קשר - מידן שוורצמן provides professional חינוך services. Specializing in שיעורים פרטיים במתמטיקה.">
+  <meta name="keywords" content="שיעורים פרטיים במתמטיקה, מידן שוורצמן, שיעורים פרטיים במתמטיקה לילדים, מורה פרטי למתמטיקה כיתות א-ו">
+  <meta name="robots" content="index, follow">
+  
+  <meta property="og:title" content="צור קשר - מידן שוורצמן">
+  <meta property="og:description" content="צור קשר - מידן שוורצמן provides professional חינוך services. Specializing in שיעורים פרטיים במתמטיקה.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="צור קשר - מידן שוורצמן">
+  <meta name="twitter:description" content="צור קשר - מידן שוורצמן provides professional חינוך services. Specializing in שיעורים פרטיים במתמטיקה.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
+    <!-- Mickidum Accessibility Toolbar -->
+    <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
+<!-- Zappy Analytics -->
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration
+  var config = {
+    websiteId: '7d7e5a2e-ec9a-4937-b8f3-546b53b45401',
+    apiUrl: 'https://api.zappy5.com/api/analytics/track',
+    sessionDuration: 30 * 60 * 1000, // 30 minutes
+    visitorDuration: 30 * 24 * 60 * 60 * 1000, // 30 days
+    trackPageViews: true,
+    trackClicks: true,
+    trackFormSubmissions: true
+  };
+  
+  // Generate or retrieve persistent visitor ID (30 days)
+  function getVisitorId() {
+    var visitorKey = 'zappy_visitor_' + config.websiteId;
+    var visitor = null;
+    
+    try {
+      visitor = localStorage.getItem(visitorKey);
+      if (visitor) {
+        var visitorData = JSON.parse(visitor);
+        var now = Date.now();
+        
+        // Check if visitor ID is still valid (30 days)
+        if (now - visitorData.created < config.visitorDuration) {
+          // Update last seen timestamp
+          visitorData.lastSeen = now;
+          localStorage.setItem(visitorKey, JSON.stringify(visitorData));
+          return visitorData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: LocalStorage not available');
+    }
+    
+    // Generate new visitor ID
+    var newVisitorId = 'zv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      localStorage.setItem(visitorKey, JSON.stringify({
+        id: newVisitorId,
+        created: Date.now(),
+        lastSeen: Date.now()
+      }));
+    } catch (e) {
+      // Continue without local storage
+    }
+    
+    return newVisitorId;
+  }
+  
+  // Generate or retrieve session ID (30 minutes)
+  function getSessionId() {
+    var sessionKey = 'zappy_session_' + config.websiteId;
+    var session = null;
+    
+    try {
+      session = sessionStorage.getItem(sessionKey);
+      if (session) {
+        var sessionData = JSON.parse(session);
+        var now = Date.now();
+        
+        // Check if session is still valid
+        if (now - sessionData.timestamp < config.sessionDuration) {
+          // Update timestamp
+          sessionData.timestamp = now;
+          sessionStorage.setItem(sessionKey, JSON.stringify(sessionData));
+          return sessionData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: SessionStorage not available');
+    }
+    
+    // Generate new session ID
+    var newSessionId = 'zs_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      sessionStorage.setItem(sessionKey, JSON.stringify({
+        id: newSessionId,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      // Continue without session storage
+    }
+    
+    return newSessionId;
+  }
+  
+  var visitorId = getVisitorId();
+  var sessionId = getSessionId();
+  
+  // Track an event
+  function trackEvent(eventType, data) {
+    data = data || {};
+    
+    var eventData = {
+      website_id: config.websiteId,
+      event_type: eventType,
+      page_path: window.location.pathname,
+      referrer: document.referrer || 'direct',
+      visitor_id: visitorId,
+      session_id: sessionId,
+      metadata: data
+    };
+    
+    // Use sendBeacon if available (better for page unload events)
+    if (navigator.sendBeacon) {
+      var blob = new Blob([JSON.stringify(eventData)], { type: 'application/json' });
+      navigator.sendBeacon(config.apiUrl, blob);
+    } else {
+      // Fallback to fetch
+      fetch(config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData),
+        keepalive: true
+      }).catch(function(error) {
+        console.warn('Zappy Analytics: Failed to track event', error);
+      });
+    }
+  }
+  
+  // Track page view
+  if (config.trackPageViews) {
+    trackEvent('pageview', {
+      title: document.title,
+      url: window.location.href
+    });
+  }
+  
+  // Track clicks on important elements
+  if (config.trackClicks) {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      
+      // Track button clicks (counted as actions)
+      if (target.tagName === 'BUTTON' || target.closest('button')) {
+        var button = target.tagName === 'BUTTON' ? target : target.closest('button');
+        trackEvent('click', {
+          element: 'button',
+          text: button.textContent.trim().substring(0, 100),
+          id: button.id || null,
+          class: button.className || null
+        });
+      }
+      
+      // Track link clicks (navigation - not counted as actions)
+      else if (target.tagName === 'A' || target.closest('a')) {
+        var link = target.tagName === 'A' ? target : target.closest('a');
+        trackEvent('navigation', {
+          element: 'link',
+          text: link.textContent.trim().substring(0, 100),
+          href: link.href,
+          external: link.hostname !== window.location.hostname
+        });
+      }
+    }, true);
+  }
+  
+  // Track form submissions
+  if (config.trackFormSubmissions) {
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      
+      trackEvent('form_submit', {
+        form_id: form.id || null,
+        form_name: form.name || null,
+        form_action: form.action || null,
+        form_method: form.method || 'GET'
+      });
+    }, true);
+  }
+  
+  // Track time on page (send on page unload)
+  var pageLoadTime = Date.now();
+  
+  window.addEventListener('beforeunload', function() {
+    var timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000); // in seconds
+    
+    trackEvent('page_unload', {
+      time_on_page: timeOnPage,
+      page_path: window.location.pathname
+    });
+  });
+  
+  // Expose tracking function globally for custom events
+  window.zappyAnalytics = {
+    track: trackEvent,
+    getVisitorId: function() { return visitorId; },
+    getSessionId: function() { return sessionId; }
+  };
+  
+})();
+</script>
+<!-- End Zappy Analytics -->
+
+    <style id="zappy-dropdown-submenu-styles">
+      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
+      /* Base styles for dropdown submenus - parent must be positioned */
+      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
+      /* Submenu base - hidden by default */
+      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
+      /* CRITICAL: Desktop hover styles to show dropdown */
+      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Submenu item styling */
+      .sub-menu li { list-style: none; margin: 0; padding: 0; }
+      .sub-menu a { display: block !important; padding: 10px 16px !important; color: #333 !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
+      .sub-menu a:hover { background-color: #f5f5f5; }
+      /* RTL (Hebrew/Arabic) dropdown positioning */
+      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
+      /* Hide empty dropdown menus */
+      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))), .sub-menu:not(:has(li)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+      /* Desktop: show submenu on Menu Group hover */
+      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Menu Group title styling */
+      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
+      
+      /* ========== MOBILE SUBMENU STYLES ========== */
+      @media (max-width: 768px) {
+        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
+        .sub-menu.mobile-expanded { max-height: 500px !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
+        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
+        /* Disable hover behavior on mobile */
+        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; }
+        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; }
+        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
+        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: 44px !important; background: transparent !important; border: none !important; cursor: pointer !important; }
+        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
+        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
+        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
+        .sub-menu a { padding: 10px 0 !important; display: block !important; }
+        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; }
+      }
+      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
+    </style>
+</head>
+<body>
+  <nav class="navbar" dir="rtl">
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+    <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none;">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+  </button>
+  
+  <button class="phone-header-btn" aria-label="Call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+    </svg>
+  </button>
+  
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a href="/" class="logo-link">
+        <img src="/assets/business-logo.webp" alt="מידן שוורצמן" class="logo" />
+      </a>
+    </div>
+    
+    <ul class="nav-menu" id="navMenu"><li><a href="/programs">תוכניות</a></li><li><a href="/about">אודות</a></li></ul>
+    
+    <div class="nav-cta-container">
+      <a href="/contact" class="nav-cta-btn">צור קשר</a>
+    </div>
+  </div>
+</nav>
+  
+  <main>
+    <section class="-contact-hero-section" data-layout-spec="צור קשר-contact-hero">
+  <div class="contact-hero-container">
+    <div class="contact-hero-content">
+      <h2 class="contact-hero-title">בואו נדבר.</h2>
+      <p class="contact-hero-text">שלחו לי הודעה ואחזור אליכם בהקדם. כל שאלה, רעיון או סתם רצון לשתף – אני כאן כדי להקשיב ולעזור.</p>
+    </div>
+    <div class="contact-hero-image-wrapper">
+      <img data-placeholder="-contact-hero-image-1" data-context="A warm, engaging photo of a friendly elementary school math tutor in a bright classroom setting, surrounded by colorful educational materials, number charts, and geometric shapes. The image should feel welcoming and professional, showing dedication to teaching children aged 6-12. Black and white photo with cyan tint overlay for a modern, tech-forward educational vibe." width="600" height="800" src="/assets/site-contact-hero-image-1.webp" alt="מידן שוורצמן - מורה פרטי למתמטיקה">
+    </div>
+  </div>
+  <div class="contact-hero-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 L0,0 L1200,80 L1200,80 Z" fill="var(--bg-light)"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="contact-form-section" data-layout-spec="צור קשר-contact-form">
+  <div class="contact-form-container">
+    <div class="contact-form-grid">
+      <div class="contact-form-column">
+        <h2>שלחו לי הודעה</h2>
+        <p>ספרו לי על המטרות שלכם ועל הרמה הנוכחית – ביחד נבנה תוכנית לימודים מותאמת אישית שתעזור להצליח במתמטיקה.</p>
+        
+        <form class="contact-form" action="/submit-contact" method="POST">
+          <div class="contact-form-row">
+            <div class="contact-form-field">
+              <label for="contact-name">שם מלא</label>
+              <input type="text" id="contact-name" name="name" required="" placeholder="הכניסו את שמכם">
+            </div>
+            <div class="contact-form-field">
+              <label for="contact-email">אימייל</label>
+              <input type="email" id="contact-email" name="email" required="" placeholder="example@email.com">
+            </div>
+          </div>
+          
+          <div class="contact-form-field">
+            <label for="contact-phone">טלפון</label>
+            <input type="tel" id="contact-phone" name="phone" required="" placeholder="050-1234567">
+          </div>
+          
+          <div class="contact-form-field">
+            <label for="contact-message">הודעה</label>
+            <textarea id="contact-message" name="message" rows="6" required="" placeholder="ספרו לי על הנושאים שאתם רוצים לשפר, המטרות שלכם, והמועדים המועדפים עליכם..."></textarea>
+          </div>
+          
+          <button type="submit" class="contact-submit-btn">
+            <span>שלחו הודעה</span>
+            <svg data-no-icon-edit="true" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+      
+      <div class="contact-info-column">
+        <h3>מה כדאי לכלול בהודעה?</h3>
+        <p>כדי שאוכל להתאים את השיעורים בצורה הטובה ביותר, ספרו לי קצת על הרקע והצרכים שלכם:</p>
+        
+        <div class="contact-checklist">
+          <p class="contact-checklist-item"><strong>המטרות שלכם:</strong> האם אתם רוצים לשפר ציונים, להתכונן למבחן, או פשוט להבין טוב יותר את החומר?</p>
+          <p class="contact-checklist-item"><strong>הנושאים המרכזיים:</strong> אילו נושאים במתמטיקה מעניינים אתכם או מאתגרים אתכם כרגע?</p>
+          <p class="contact-checklist-item"><strong>מסגרת זמנים:</strong> מתי אתם מעדיפים לקבוע שיעורים, וכמה פעמים בשבוע?</p>
+        </div>
+        
+        <p class="contact-privacy-note">כל המידע שתשתפו נשמר בסודיות מוחלטת ומשמש אך ורק לצורך תכנון השיעורים שלכם.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="contact-form-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="contact-divider-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:var(--bg-light);stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:var(--bg-dark);stop-opacity:1"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M0,100 L0,0 L1200,0 L1200,100 Z" fill="url(#contact-divider-gradient)"></path>
+      <line x1="0" y1="50" x2="1200" y2="50" stroke="var(--primary)" stroke-width="1" opacity="0.4"></line>
+    </svg>
+  </div>
+</section>
+
+<section class="contact-location-section" data-layout-spec="צור קשר-location">
+  <div class="contact-location-container">
+    <div class="contact-location-header">
+      <h2>איך ליצור קשר</h2>
+      <p class="contact-location-intro">מציעים שיעורים פרטיים במתמטיקה באזור המרכז – אפשר להיפגש פנים אל פנים או בשיעורים מקוונים לנוחיותכם.</p>
+    </div>
+
+    <div class="contact-location-grid">
+      <div class="contact-location-info-card">
+        <h3>פרטי התקשרות</h3>
+        <div class="contact-location-info-item">
+          <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 6.66667L9.0755 11.0504C9.63533 11.4236 10.3647 11.4236 10.9245 11.0504L17.5 6.66667M4.16667 15.8333H15.8333C16.7538 15.8333 17.5 15.0871 17.5 14.1667V5.83333C17.5 4.91286 16.7538 4.16667 15.8333 4.16667H4.16667C3.24619 4.16667 2.5 4.91286 2.5 5.83333V14.1667C2.5 15.0871 3.24619 15.8333 4.16667 15.8333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <span>[business_email]</span>
+        </div>
+        <div class="contact-location-info-item">
+          <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 5.83333C2.5 4.91286 3.24619 4.16667 4.16667 4.16667H6.39679C6.76202 4.16667 7.09058 4.40221 7.21394 4.74893L8.43811 8.17394C8.58662 8.59626 8.41812 9.06576 8.03684 9.30562L6.52083 10.2917C7.40863 12.1381 8.86189 13.5914 10.7083 14.4792L11.6944 12.9632C11.9342 12.5819 12.4037 12.4134 12.8261 12.5619L16.2511 13.7861C16.5978 13.9094 16.8333 14.238 16.8333 14.6032V16.8333C16.8333 17.7538 16.0871 18.5 15.1667 18.5H14.1667C7.86548 18.5 2.5 13.1345 2.5 6.83333V5.83333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <span>[business_phone]</span>
+        </div>
+        <div class="contact-location-info-item">
+          <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.5 8.33333C17.5 13.3333 10 18.3333 10 18.3333C10 18.3333 2.5 13.3333 2.5 8.33333C2.5 6.34419 3.29018 4.43655 4.6967 3.03007C6.10322 1.62359 8.01088 0.833332 10 0.833332C11.9891 0.833332 13.8968 1.62359 15.3033 3.03007C16.7098 4.43655 17.5 6.34419 17.5 8.33333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M10 10.8333C11.3807 10.8333 12.5 9.71404 12.5 8.33333C12.5 6.95262 11.3807 5.83333 10 5.83333C8.61929 5.83333 7.5 6.95262 7.5 8.33333C7.5 9.71404 8.61929 10.8333 10 10.8333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <span>אזור המרכז – שיעורים פנים אל פנים או אונליין</span>
+        </div>
+      </div>
+
+      <div class="contact-location-map-wrapper">
+        <div class="contact-location-map-overlay"></div>
+        <img data-placeholder="contact-location-image-1" data-context="Monochrome stylized map screenshot showing central Israel region with a bright cyan location pin marker, dark desaturated background, minimal UI elements, suitable for a modern educational tutoring website" width="600" height="400" src="/assets/site-contact-location-image-1.webp" alt="מפה מסוגננת המציגה את אזור השירות במרכז">
+        <div class="contact-location-pin-accent">
+          <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.16344 0 0 7.16344 0 16C0 24.8366 16 40 16 40C16 40 32 24.8366 32 16C32 7.16344 24.8366 0 16 0ZM16 21.3333C13.0545 21.3333 10.6667 18.9455 10.6667 16C10.6667 13.0545 13.0545 10.6667 16 10.6667C18.9455 10.6667 21.3333 13.0545 21.3333 16C21.3333 18.9455 18.9455 21.3333 16 21.3333Z" fill="var(--primary)"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-location-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 L0,30 Q150,28 300,32 T600,28 Q750,32 900,28 T1200,32 L1200,60 Z" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="8,6" stroke-linecap="round"></path>
+      <path d="M0,60 L1200,60 L1200,0 L0,0 Z" fill="var(--bg-light)"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="contact-faq-section" data-layout-spec="צור קשר-faq">
+  <div class="contact-faq-container">
+    <h2 class="contact-faq-title">לפני שאתם שולחים</h2>
+    <div class="contact-faq-list">
+      <article class="contact-faq-item">
+        <h3 class="contact-faq-question">למי מתאימים השיעורים?</h3>
+        <p class="contact-faq-answer">השיעורים מיועדים לתלמידי כיתות א׳ עד ו׳ שרוצים לחזק את היכולות במתמטיקה, להתכונן למבחנים, או פשוט ליהנות מלמידה מעניינת ואינטראקטיבית. כל ילד מקבל תשומת לב אישית ותוכנית לימודים מותאמת לקצב שלו.</p>
+      </article>
+      <article class="contact-faq-item">
+        <h3 class="contact-faq-question">מה כדאי לכתוב בפנייה?</h3>
+        <p class="contact-faq-answer">ספרו לי על הילד/ה – באיזו כיתה, מה התחומים שמעניינים או מאתגרים, והאם יש מטרה ספציפית (כמו הכנה למבחן או חיזוק בנושא מסוים). ככל שאתן יותר פרטים, אוכל להתאים את השיעור הראשון בדיוק לצרכים שלכם.</p>
+      </article>
+      <article class="contact-faq-item">
+        <h3 class="contact-faq-question">איך נראה שיעור אצלי?</h3>
+        <p class="contact-faq-answer">כל שיעור בנוי כמו הרפתקה קטנה: נתחיל עם אתגר מעניין, נעבוד על החומר בצורה דינמית ומעשירה, ונסיים עם תרגול שמחזק את הביטחון. אני משתמש בכלים ויזואליים, משחקים לוגיים, ודוגמאות מהחיים – כדי שמתמטיקה תרגיש כמו משהו שכיף לעשות.</p>
+      </article>
+      <article class="contact-faq-item">
+        <h3 class="contact-faq-question">מה קורה אחרי שאני יוצר קשר?</h3>
+        <p class="contact-faq-answer">אחזור אליכם תוך 24 שעות (בדרך כלל מהר יותר!) כדי לתאם שיחת היכרות קצרה או מפגש ראשון. נדבר על הציפיות, נבנה תוכנית מותאמת אישית, ונתחיל את המסע המתמטי – בקצב שנוח לכם ולילד/ה.</p>
+      </article>
+    </div>
+  </div>
+  <div class="contact-faq-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,100 L0,0 L1200,100 Z" fill="var(--bg-dark)"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="contact-cta-section" data-layout-spec="צור קשר-cta">
+  <div class="contact-cta-container">
+    <div class="contact-cta-content">
+      <h2 class="contact-cta-heading">מעדיפים לחקור קודם?</h2>
+      <p class="contact-cta-text">גלו את מגוון התוכניות שלנו ומצאו את המסלול המתאים ביותר לילד שלכם.</p>
+      <a href="/programs" class="contact-cta-button btn-primary">
+        <span>צפייה בתוכניות</span>
+        <svg data-element-type="icon" data-icon-type="svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+    
+    <svg class="contact-cta-glow-1" width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" data-no-icon-edit="true" aria-hidden="true">
+      <circle cx="300" cy="300" r="280" fill="url(#glow1)" opacity="0.4"></circle>
+      <defs>
+        <radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 300) rotate(90) scale(280)">
+          <stop offset="0%" stop-color="#FFB000" stop-opacity="0.3"></stop>
+          <stop offset="100%" stop-color="#FFB000" stop-opacity="0"></stop>
+        </radialGradient>
+      </defs>
+    </svg>
+    
+    <svg class="contact-cta-glow-2" width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" data-no-icon-edit="true" aria-hidden="true">
+      <circle cx="250" cy="250" r="220" fill="url(#glow2)" opacity="0.35"></circle>
+      <defs>
+        <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(250 250) rotate(90) scale(220)">
+          <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.25"></stop>
+          <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"></stop>
+        </radialGradient>
+      </defs>
+    </svg>
+  </div>
+</section>
+  </main>
+  
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-column footer-about">
+        <img src="/assets/business-logo.webp" alt="מידן שוורצמן" class="logo" />
+        <p class="footer-description">מרכז חינוכי מוביל המספק תוכניות לימוד איכותיות ומותאמות אישית לכל תלמיד.</p>
+      </div>
+      
+      <div class="footer-column footer-links">
+        <h3 class="footer-title">קישורים מהירים</h3>
+        <ul class="footer-nav">
+          <li><a href="/programs">תוכניות</a></li>
+          <li><a href="/about">אודות</a></li>
+          <li><a href="/contact">צור קשר</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column footer-contact">
+        <h3 class="footer-title">יצירת קשר</h3>
+        <ul class="contact-list">
+          <li>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:[business_email]">[business_email]</a>
+          </li>
+          <li>
+            <i class="fas fa-phone"></i>
+            <a href="tel:[business_phone]">[business_phone]</a>
+          </li>
+          <li><a href="/"><i class="fas fa-map-marker-alt"></i>
+            <span>[business_address]</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column footer-social">
+        <h3 class="footer-title">עקבו אחרינו</h3>
+        <div class="social-links">
+          <a href="[facebook_handle]" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+          <a href="[instagram_handle]" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="[whatsapp_handle]" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <a href="/privacy">מדיניות פרטיות</a>
+        <span class="separator">|</span>
+        <a href="/terms">תנאים והגבלות</a>
+        <span class="separator">|</span>
+        <a href="/accessibility">הצהרת נגישות</a>
+      </div>
+      <div class="footer-copyright">
+        <p>© 2026 מידן שוורצמן. כל הזכויות שמורות.</p>
+      </div>
+      <div class="footer-attribution">
+        <a href="https://zappy5.com" target="_blank" class="zappy-attribution">Generated by Zappy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  
+  <script src="/script.js"></script>
+
+    <div data-integration="accessibility:toolbar"></div>
+
+    <script id="zappy-mobile-submenu-script">
+    (function() {
+      function initMobileSubmenuToggles() {
+        if (window.innerWidth > 768) {
+          document.querySelectorAll('.mobile-submenu-toggle').forEach(function(btn) { btn.remove(); });
+          document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) { menu.classList.remove('mobile-expanded'); });
+          return;
+        }
+        var items = document.querySelectorAll('.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)');
+        items.forEach(function(li) {
+          if (li.querySelector('.mobile-submenu-toggle')) return;
+          var submenu = li.querySelector('.sub-menu');
+          var parentLink = li.querySelector(':scope > a');
+          if (!submenu || !parentLink) return;
+          var toggleBtn = document.createElement('button');
+          toggleBtn.className = 'mobile-submenu-toggle';
+          toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+          toggleBtn.setAttribute('type', 'button');
+          parentLink.insertAdjacentElement('afterend', toggleBtn);
+          toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+              if (menu !== submenu) { menu.classList.remove('mobile-expanded'); var t = menu.parentElement.querySelector('.mobile-submenu-toggle'); if(t) t.classList.remove('expanded'); }
+            });
+            submenu.classList.toggle('mobile-expanded');
+            toggleBtn.classList.toggle('expanded');
+          });
+        });
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initMobileSubmenuToggles); }
+      else { initMobileSubmenuToggles(); }
+      var resizeTimer; window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(initMobileSubmenuToggles, 250); });
+      // Re-initialize when mobile menu becomes visible (MutationObserver)
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes') {
+            var target = mutation.target;
+            if (target.classList && (target.classList.contains('active') || target.classList.contains('open'))) {
+              setTimeout(initMobileSubmenuToggles, 100);
+            }
+          }
+        });
+      });
+      setTimeout(function() {
+        document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu, nav').forEach(function(menu) {
+          observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
+        });
+      }, 500);
+    })();
+    </script>
+</body></html>
